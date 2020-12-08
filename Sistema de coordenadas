@@ -1,0 +1,32 @@
+/*
+ * Proyecto_Final.cpp
+ *
+ * Created: 05/12/2020 05:43:35 p. m.
+ * Author : Eduardo V
+ */ 
+
+#define F_CPU 4000000UL
+#include <avr/io.h>					 //Librerias necesarias
+#include <util/delay.h>
+#include "Ultrasonico/ultrasonico.h"
+
+//sensor 1
+#define Trigger1 0
+#define Echo1 1         //Declaracion de los pines
+//sensor 2                 de trabajo para los ultrasonicos
+#define Echo 6
+#define Trigger 2
+
+
+int main(void){
+	int x=0,y=0,x1=0,y1=0;
+	int xr=0,yr=0;//variables ressultantes
+	ultrasonic funciones(Trigger1,Echo1,Trigger,Echo);
+	while(1){
+		funciones.coordenadas(x,y,Trigger1,Echo1,Trigger,Echo);
+		_delay_ms(500);
+		funciones.coordenadas(x1,y1,Trigger1,Echo1,Trigger,Echo);
+		funciones.suma_vectores(x,y,x1,y1,xr,yr);
+	}
+}
+
